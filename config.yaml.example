@@ -1,0 +1,43 @@
+# ListingRadar Configuration
+# Copy this to config.yaml and fill in your API keys
+
+database:
+  url: "sqlite:///listing_radar.db"
+
+telegram:
+  bot_token: "YOUR_BOT_TOKEN_HERE"
+  chat_id: "-1003762552122"  # ListingRadar group
+
+amazon:
+  # Placeholder for Amazon API integration
+  enabled: false
+  mock_data: true
+
+google_trends:
+  enabled: true
+  mock_data: false
+
+social:
+  reddit:
+    enabled: false
+    mock_data: true
+  tiktok:
+    enabled: false
+    mock_data: true
+
+shopify:
+  enabled: false
+  mock_data: true
+
+scoring:
+  momentum_threshold: 60  # Alert when momentum score > 60
+  confidence_threshold: 70  # Only alert on high confidence
+
+scheduler:
+  amazon_check_interval: 300  # 5 minutes
+  trends_check_interval: 900  # 15 minutes
+  social_check_interval: 1800  # 30 minutes
+
+dashboard:
+  host: "127.0.0.1"
+  port: 8000

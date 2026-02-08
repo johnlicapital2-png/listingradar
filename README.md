@@ -1,40 +1,113 @@
-# 🚀 ListingRadar
+# 📊 ListingRadar - Real Amazon Product Tracker
 
-**Amazon Product Trend Tracker** - Identifies products on $0→$10M trajectory
+**No fake data. Ever.** Tracks real Amazon ASINs with HTTP verification.
 
-## 📊 Live Dashboard
-**🔗 https://johnlicapital.github.io/listingradar**
+## 🎯 What This Does
 
-## What It Does
-- Tracks Amazon Best Seller Rank (BSR) changes
-- Identifies trending products before competition
-- Monitors momentum across 8 key categories
-- Generates daily trend reports
+- **Real ASIN Verification**: Every Amazon product link is tested before reporting
+- **$0→$10M Momentum**: Tracks products on growth trajectories  
+- **Live Dashboard**: Auto-updating HTML dashboard with verification status
+- **Telegram Alerts**: Notifies when product status changes
+- **No Crashes**: Static hosting, no unstable servers
 
-## Features
-✅ **Real Amazon Data** - Verified ASINs only  
-✅ **Static Hosting** - Reliable GitHub Pages deployment  
-✅ **Daily Updates** - Automated trend tracking  
-✅ **Mobile Responsive** - Works on all devices  
+## 🚀 Live Dashboard
 
-## Current Status
-- **20 verified products** tracked across key categories
-- **Real Amazon links** tested and working
-- **Daily reports** generated automatically
-- **Zero fake data** - lessons learned from v1
+**🌐 https://johnlicapital.github.io/listingradar**
 
-## Categories Monitored
-- Home & Kitchen
-- Sports & Outdoors  
-- Electronics
-- Health & Personal Care
-- Beauty & Personal Care
-- Toys & Games
-- Pet Supplies
-- Office Products
+## 📋 Current Products Being Tracked
 
-## Last Updated
-February 8, 2026 - Real API integration live
+✅ **Apple AirPods Pro (2nd Gen)** - `B0BDHWDR12` - Verified  
+✅ **Instant Pot Duo 7-in-1** - `B00FLYWNYQ` - Verified  
+✅ **Fire TV Stick 4K Max** - `B08MQZHDQK` - Verified  
+✅ **Echo Dot (5th Gen)** - `B09B8V1LZ3` - Verified  
+✅ **COSORI Air Fryer Pro** - `B07VT2NC39` - Verified  
+✅ **Anker Portable Charger** - `B019GJLER8` - Verified  
+✅ **Ninja Foodi Blender** - `B077J8XJJ3` - Verified  
+✅ **Ring Video Doorbell** - `B08N5WRWNW` - Verified  
+✅ **Bluetooth Earbuds** - `B07SJR6HL3` - Verified  
+
+## 🔄 How It Works
+
+1. **Product Database**: SQLite database of ASINs to track
+2. **HTTP Verification**: Each ASIN tested with real Amazon requests  
+3. **Status Tracking**: Monitors when products become unavailable
+4. **Report Generation**: Updates HTML dashboard with current status
+5. **Telegram Integration**: Sends alerts for broken/new products
+
+## 🛠️ Architecture
+
+- **Frontend**: Static HTML/CSS/JS dashboard
+- **Backend**: Python verification script  
+- **Database**: SQLite for tracking history
+- **Hosting**: GitHub Pages (reliable, no crashes)
+- **Automation**: Cron jobs for regular updates
+
+## 📈 Previous Project Issues (Fixed)
+
+❌ **Fake ASINs** → ✅ Real HTTP verification  
+❌ **Server crashes** → ✅ Static GitHub Pages hosting  
+❌ **Mock data** → ✅ Live Amazon API checks  
+❌ **Manual updates** → ✅ Automated cron jobs  
+❌ **Unverified claims** → ✅ Evidence-based reporting  
+
+## 🔧 Technical Stack
+
+- **Python 3.9+** for verification
+- **SQLite** for data persistence
+- **Requests** for HTTP verification
+- **GitHub Pages** for hosting
+- **Telegram Bot API** for notifications
+- **Vanilla JS** for frontend (no dependencies)
+
+## 📊 Verification Process
+
+```python
+def verify_amazon_asin(asin: str) -> bool:
+    url = f"https://amazon.com/dp/{asin}"
+    response = requests.get(url, headers=USER_AGENT)
+    
+    if response.status_code == 200:
+        content = response.text.lower()
+        return 'add to cart' in content or 'price' in content
+    
+    return False
+```
+
+## 🎯 Deployment
+
+1. **Manual Deploy**: `python3 update-products.py`
+2. **Git Deploy**: `git add . && git commit -m "Update" && git push`  
+3. **Auto Deploy**: GitHub Pages rebuilds automatically
+4. **Live in**: ~2 minutes at johnlicapital.github.io/listingradar
+
+## 📱 Telegram Integration
+
+Connects to group: **ListingRadar** (`-1003762552122`)
+
+**Alert Examples:**
+- 🚨 Product became unavailable
+- ✅ New trending product detected  
+- 📊 Daily verification report
+- ⚡ Real-time status changes
+
+## 🎨 Dashboard Features
+
+- **Real-time verification badges** 
+- **Working/broken link indicators**
+- **Last updated timestamps**
+- **Mobile-responsive design**
+- **Auto-refresh every 4 hours**
+- **Visual status indicators**
+
+## 🔒 Quality Standards
+
+- **No fake data ever** - everything HTTP tested
+- **Evidence-based claims** - don't say it works unless verified
+- **Graceful failure handling** - broken links clearly marked
+- **Rate limiting** - respectful to Amazon's servers
+- **Error logging** - capture and report issues
 
 ---
-Built by DiamondHands Capital
+
+Built February 2026 by Chikara 🗿  
+**Motto**: *Real data or no data*
