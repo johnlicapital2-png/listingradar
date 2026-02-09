@@ -46,7 +46,11 @@ def verify_amazon_asin(asin: str, timeout: int = 10) -> Tuple[bool, int, str]:
                 return False, response.status_code, "Product unavailable"
             elif 'page not found' in content or 'sorry' in content:
                 return False, response.status_code, "Page not found"
-            elif 'add to cart' in content or 'buy now' in content or 'price' in content:
+            elif any(indicator in content for indicator in [
+                'add to cart', 'buy now', 'price', 'product information', 
+                'customer reviews', 'product details', 'amazon.com', 
+                'technical details', 'asin', 'item weight', 'manufacturer'
+            ]):
                 return True, response.status_code, "Valid product page"
             else:
                 return False, response.status_code, "Not a product page"
